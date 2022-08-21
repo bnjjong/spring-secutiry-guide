@@ -1,0 +1,26 @@
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:2021.0.3"
+    }
+}
+
+jar {
+    enabled = false
+}
+
+dependencies {
+    // dev only
+//    developmentOnly "org.springframework.boot:spring-boot-devtools"
+
+    // mapper
+    implementation 'org.modelmapper:modelmapper:3.1.0'
+
+    // ============================== test ==============================
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // ============================== test ==============================
+}
+
+tasks.named("processResources") { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }

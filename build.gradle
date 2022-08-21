@@ -1,0 +1,43 @@
+buildscript {
+	project.ext.set("springVersion", "2.7.0")
+	repositories {
+		// for quality
+		gradlePluginPortal()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		// lombok
+		classpath "io.franzbecker:gradle-lombok:5.0.0"
+
+		// spring boot
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springVersion}"
+		classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
+	}
+}
+
+allprojects {
+
+	group = 'io.jjong'
+	version = '1.0'
+
+	repositories {
+		mavenLocal()    // maven local cache repository
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+		maven { url "https://repo1.maven.org/maven2/" }
+	}
+	tasks.withType(JavaCompile) {
+		options.encoding = "UTF-8"
+	}
+}
+
+subprojects {
+	apply from: "${project.getRootDir()}/gradle/common.gradle"
+	apply from: "${project.getRootDir()}/gradle/test.gradle"
+	apply from: "${project.getRootDir()}/gradle/spring.common.gradle"
+	apply from: "${project.getRootDir()}/gradle/spring.gradle"
+	apply from: "${project.getRootDir()}/gradle/spring.security.gradle"
+}
