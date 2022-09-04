@@ -1,7 +1,8 @@
 rootProject.name = 'spring-secutiry-guide'
 [
     "example:spring-security-basic",
-    "example:spring-security-form-login"
+    "example:spring-security-form-login",
+    "example:spring-security-custom-filter"
 ].each {
     if (it.indexOf("global") != -1) {
         def dir = makeDir(rootDir, it)
