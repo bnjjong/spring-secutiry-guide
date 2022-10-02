@@ -1,0 +1,10 @@
+### hello 호출
+GET http://localhost:9054/hello
+
+### auth 호출 no authorization (401)
+GET http://localhost:9054/auth
+
+### auth 호출
+GET http://localhost:9054/auth
+Authorization: Basic jongsang 12345
+
